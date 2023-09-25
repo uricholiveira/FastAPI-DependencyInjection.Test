@@ -1,0 +1,56 @@
+[tool.poetry]
+name = "whos-next"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.103.1"
+uvicorn = "^0.23.2"
+pydantic = {extras = ["email"], version = "^2.3.0"}
+pydantic-settings = "^2.0.3"
+sqlalchemy = "^2.0.20"
+rabbitmq = "^0.2.0"
+celery = "^5.3.4"
+loguru = "^0.7.1"
+alembic = "^1.12.0"
+dependency-injector = "^4.41.0"
+psycopg2 = "^2.9.7"
+psutil = "^5.9.5"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-jose = "^3.3.0"
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "^68.2.0"
+ruff = "^0.0.287"
+pytest = "^7.4.2"
+pre-commit = "^3.4.0"
+
+[tool.pytest.ini_options]
+addopts = "-ra -q"
+python_files = "*.py"
+python_classes = "Test"
+testpaths = [
+    "tests"
+]
+
+[tool.ruff]
+line-length = 120
+select = [
+    "B",
+    "C",
+    "E", # pycodestyle
+    "F", # pyflakes
+    "UP", # pyupgrade
+    "W",
+    "B9"
+]
+
+[tool.ruff.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.params.Depends", "fastapi.Query", "fastapi.params.Query"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
