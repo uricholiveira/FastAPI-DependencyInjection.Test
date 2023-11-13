@@ -16,3 +16,13 @@ async def login(
 ):
     result = await auth_service.login(data=data)
     return result
+
+
+@router.patch("/reset-password")
+@inject
+async def reset_password(
+        data: LoginRequest,
+        auth_service: AuthService = Depends(Provide[Container.auth_service]),
+):
+    result = await auth_service.login(data=data)
+    return result
